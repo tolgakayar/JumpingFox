@@ -23,8 +23,9 @@ public class Fox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Run();
-        Jump();
+        //Run();
+        //Jump();
+        JumpAuto();
     }
 
     private void Run()
@@ -58,5 +59,21 @@ public class Fox : MonoBehaviour
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed * Time.deltaTime);
             myRigidBody.velocity += jumpVelocityToAdd;
         }
+    }
+
+    private void JumpAuto()
+    {
+        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Path"))) { return; }
+
+        //Debug.Log("before jump x: " + myRigidBody.velocity.x + "y: " + myRigidBody.velocity.y + " time" + Time.deltaTime);
+
+        //Vector2 playerVelocity = new Vector2(runSpeed * Time.deltaTime, myRigidBody.velocity.y);
+        //myRigidBody.velocity = playerVelocity;
+
+        Vector2 jumpVelocityToAdd = new Vector2(runSpeed, jumpSpeed);
+        myRigidBody.velocity = jumpVelocityToAdd;
+        //myRigidBody.velocity = playerVelocity + jumpVelocityToAdd;
+
+        //Debug.Log("after jump x: " + myRigidBody.velocity.x + "y: " + myRigidBody.velocity.y);
     }
 }
