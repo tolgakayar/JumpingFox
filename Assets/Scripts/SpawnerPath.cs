@@ -74,6 +74,14 @@ public class SpawnerPath : MonoBehaviour
             newGroundObject.transform.parent = transform;
 
             groundGeneratedObjects.Add(newGroundObject);
+
+            //Destroy object
+            if (generationCount > 1)
+            {
+                //Destroy Ground object
+                Destroy(groundGeneratedObjects[0]);
+                groundGeneratedObjects.RemoveAt(0);
+            }
         }
     }
 
@@ -93,11 +101,18 @@ public class SpawnerPath : MonoBehaviour
             5 * flowerObjects[flowerObjectIndex].transform.position.y + transform.position.y,
             flowerObjects[flowerObjectIndex].transform.position.z + transform.position.z);
 
-
             var newFlowerObject = Instantiate(flowerObjects[flowerObjectIndex], newFlowerPosition, Quaternion.identity);
             newFlowerObject.transform.parent = transform;
 
             flowerGeneratedObjects.Add(newFlowerObject);
+
+            //Destroy object
+            if (generationCount > 1)
+            {
+                //Destroy Flower object
+                Destroy(flowerGeneratedObjects[0]);
+                flowerGeneratedObjects.RemoveAt(0);
+            }
         }
     }
 }

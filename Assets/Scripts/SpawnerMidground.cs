@@ -65,6 +65,14 @@ public class SpawnerMidground : MonoBehaviour
             newMassObject.transform.parent = transform;
 
             massGeneratedObjects.Add(newMassObject);
+
+            //Destroy object
+            if (generationCount > 1)
+            {
+                //Destroy Mass object
+                Destroy(massGeneratedObjects[0]);
+                massGeneratedObjects.RemoveAt(0);
+            }
         }
     }
 }

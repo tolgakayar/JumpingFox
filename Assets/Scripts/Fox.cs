@@ -9,6 +9,10 @@ public class Fox : MonoBehaviour
     public float clampLeft;
     public float clampRight;
 
+    //SFX
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] [Range(0, 1)] float jumpSoundVolume = 0.25f;
+
     //Cached component references
     Rigidbody2D myRigidBody;
     BoxCollider2D myBoxCollider;
@@ -24,7 +28,7 @@ public class Fox : MonoBehaviour
     void Update()
     {
         //Run();
-        //Jump();
+        Jump();
         JumpAuto();
     }
 
@@ -51,13 +55,12 @@ public class Fox : MonoBehaviour
 
     private void Jump()
     {
-        if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Path"))) { return; }
+        //if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Path"))) { return; }
 
         if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log("fox jump");
-            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed * Time.deltaTime);
-            myRigidBody.velocity += jumpVelocityToAdd;
+            myRigidBody.AddForce(transform.up * 20);
         }
     }
 
@@ -65,15 +68,9 @@ public class Fox : MonoBehaviour
     {
         if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Path"))) { return; }
 
-        //Debug.Log("before jump x: " + myRigidBody.velocity.x + "y: " + myRigidBody.velocity.y + " time" + Time.deltaTime);
-
-        //Vector2 playerVelocity = new Vector2(runSpeed * Time.deltaTime, myRigidBody.velocity.y);
-        //myRigidBody.velocity = playerVelocity;
-
         Vector2 jumpVelocityToAdd = new Vector2(runSpeed, jumpSpeed);
         myRigidBody.velocity = jumpVelocityToAdd;
-        //myRigidBody.velocity = playerVelocity + jumpVelocityToAdd;
 
-        //Debug.Log("after jump x: " + myRigidBody.velocity.x + "y: " + myRigidBody.velocity.y);
+        AudioSource.PlayClipAtPoint(jumpSound, Camera.main.transform.position, jumpSoundVolume);
     }
 }

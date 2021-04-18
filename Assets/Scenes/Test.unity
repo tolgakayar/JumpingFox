@@ -251,6 +251,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1341614030}
   - component: {fileID: 1341614032}
+  - component: {fileID: 1341614033}
+  - component: {fileID: 1341614031}
   m_Layer: 8
   m_Name: Path
   m_TagString: Untagged
@@ -272,6 +274,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1341614031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341614029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c5c239d0e0543299d57ff49d9c1c34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObjects:
+  - {fileID: 106632772116481773, guid: bf4b96c497c224deeb7f3f00ada9954c, type: 3}
+  interactableCount: 45
 --- !u!114 &1341614032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +313,21 @@ MonoBehaviour:
   - {fileID: 2326244916992024419, guid: 105f7776254d2400dbd1bc0069b55f3e, type: 3}
   - {fileID: 6546965699800009446, guid: 584a9dce3591444eab951aa5be35fea2, type: 3}
   flowerCount: 100
+--- !u!114 &1341614033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341614029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88310e00506141338bfdae5b77758ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleObjects:
+  - {fileID: 5853892458014457850, guid: 23f2ffc0c49314f81a6579cfb3f9a5b6, type: 3}
+  obstacleCount: 15
 --- !u!1 &1571789281
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,11 +443,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5182441796245567268, guid: f05efecceb4584ed7858fd83f5b78af0,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5182441796245567269, guid: f05efecceb4584ed7858fd83f5b78af0,
         type: 3}
       propertyPath: m_RootOrder
@@ -478,13 +505,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5182441796245567274, guid: f05efecceb4584ed7858fd83f5b78af0,
         type: 3}
-      propertyPath: runSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182441796245567274, guid: f05efecceb4584ed7858fd83f5b78af0,
-        type: 3}
-      propertyPath: jumpSpeed
-      value: 5
+      propertyPath: jumpSoundVolume
+      value: 0.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f05efecceb4584ed7858fd83f5b78af0, type: 3}

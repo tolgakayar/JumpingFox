@@ -75,6 +75,14 @@ public class SpawnerForeground : MonoBehaviour
             newStoneObject.transform.parent = transform;
 
             stoneGeneratedObjects.Add(newStoneObject);
+
+            //Destroy object
+            if (generationCount > 1)
+            {
+                //Destroy Stone object
+                Destroy(stoneGeneratedObjects[0]);
+                stoneGeneratedObjects.RemoveAt(0);
+            }
         }
     }
 
@@ -98,6 +106,14 @@ public class SpawnerForeground : MonoBehaviour
             newLianaObject.transform.parent = transform;
 
             lianaGeneratedObjects.Add(newLianaObject);
+
+            //Destroy object
+            if (generationCount > 1)
+            {
+                //Destroy Liana object
+                Destroy(lianaGeneratedObjects[0]);
+                lianaGeneratedObjects.RemoveAt(0);
+            }
         }
     }
 }

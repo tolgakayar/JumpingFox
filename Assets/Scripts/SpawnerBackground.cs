@@ -80,6 +80,18 @@ public class SpawnerBackground : MonoBehaviour
         newMountainObject.transform.parent = sky.transform;
         
         mountainGeneratedObjects.Add(newMountainObject);
+
+        //Destroy object
+        if (generationCount > 1)
+        {
+            //Destroy mountain object
+            Destroy(mountainGeneratedObjects[0]);
+            mountainGeneratedObjects.RemoveAt(0);
+
+            //Destroy sky object
+            Destroy(skyGeneratedObjects[0]);
+            skyGeneratedObjects.RemoveAt(0);
+        }
     }
 
     private void GenerateColumns(float xPos)
@@ -103,6 +115,14 @@ public class SpawnerBackground : MonoBehaviour
             newColumnObject.transform.parent = column.transform;
             
             columnGeneratedObjects.Add(newColumnObject);
+
+            //Destroy object
+            if (generationCount > 1)
+            {
+                //Destroy Column object
+                Destroy(columnGeneratedObjects[0]);
+                columnGeneratedObjects.RemoveAt(0);
+            }
         }
     }
 }
