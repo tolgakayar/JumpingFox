@@ -133,4 +133,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinSound: {fileID: 8300000, guid: a86bfa84c4728402b8c461e5722dccea, type: 3}
-  coinSoundVolume: 0.25
+  coinSoundVolume: 0.8

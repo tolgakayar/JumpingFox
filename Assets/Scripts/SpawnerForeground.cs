@@ -8,14 +8,14 @@ public class SpawnerForeground : MonoBehaviour
     [SerializeField] List<GameObject> stoneObjects;
 
     List<GameObject> stoneGeneratedObjects;
-    float stoneWidth = 50f;
+    //float stoneWidth = 50f;
     
 
     [Header("Liana Properties")]
     [SerializeField] List<GameObject> lianaObjects;
 
     List<GameObject> lianaGeneratedObjects;
-    float lianaWidth = 30f;
+    //float lianaWidth = 30f;
 
     int generationCount = 0;
     float currentXSkyPosLimit = 100f;

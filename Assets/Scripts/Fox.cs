@@ -8,6 +8,7 @@ public class Fox : MonoBehaviour
     public float jumpSpeed = 150f;
     public float clampLeft;
     public float clampRight;
+    private bool isAlive = true;
 
     //SFX
     [SerializeField] AudioClip jumpSound;
@@ -16,40 +17,34 @@ public class Fox : MonoBehaviour
     //Cached component references
     Rigidbody2D myRigidBody;
     BoxCollider2D myBoxCollider;
+    GameLevel gameLevel;
 
     // Start is called before the first frame update
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
         myBoxCollider = GetComponent<BoxCollider2D>();
+        gameLevel = FindObjectOfType<GameLevel>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Run();
-        Jump();
-        JumpAuto();
+        IsTouched();
+
+        if (isAlive)
+        { 
+            Jump();
+            JumpAuto();
+        }
     }
 
-    private void Run()
+    private void IsTouched()
     {
-        //if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < clampRight)
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Obstacle")))
         {
-            Vector2 playerVelocity = new Vector2(runSpeed * Time.deltaTime, myRigidBody.velocity.y);
-            //Debug.Log("update fox right fox" + playerVelocity.x);
-            myRigidBody.velocity = playerVelocity;
-
-            //transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-        }
-        //else if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > clampLeft)
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            //Debug.Log("update fox left fox");
-            Vector2 playerVelocity = new Vector2(-runSpeed * Time.deltaTime, myRigidBody.velocity.y);
-            myRigidBody.velocity = playerVelocity;
-            //transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+            isAlive = false;
+            gameLevel.GameOver();
         }
     }
 
@@ -58,6 +53,12 @@ public class Fox : MonoBehaviour
         //if (!myBoxCollider.IsTouchingLayers(LayerMask.GetMask("Path"))) { return; }
 
         if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("fox jump");
+            myRigidBody.AddForce(transform.up * 20);
+        }
+
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             Debug.Log("fox jump");
             myRigidBody.AddForce(transform.up * 20);
