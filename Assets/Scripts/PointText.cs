@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class PointText : MonoBehaviour
 {
     [SerializeField] Text pointText;
+    [SerializeField] Text deletePointText;
+    [SerializeField] Text deleteTouchText;
     [SerializeField] int bonusFactor = 20;
     //[SerializeField] int defaultBonusFactor = 20;
     private int totalPoints = 0;
+    private float totalNotRounded = 0;
 
     GameLevel gameLevel;
 
@@ -26,7 +29,8 @@ public class PointText : MonoBehaviour
 
         if (gameLevel.IsAlive())
         {
-            totalPoints += Mathf.RoundToInt(bonusFactor * Time.deltaTime);
+            totalNotRounded = bonusFactor * Time.deltaTime;
+            totalPoints += Mathf.RoundToInt(totalNotRounded);
 
             SetPoint();
         }
@@ -39,5 +43,11 @@ public class PointText : MonoBehaviour
         gameLevel.SetPoints(totalPoints);
 
         pointText.text = totalPoints.ToString();
+        deletePointText.text = totalNotRounded.ToString();
+    }
+
+    public void SetPhase(string text)
+    {
+        deleteTouchText.text = text;
     }
 }

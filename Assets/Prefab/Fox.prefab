@@ -149,3 +149,4 @@ MonoBehaviour:
   clampRight: 0
   jumpSound: {fileID: 8300000, guid: eda34e99a86c74918b8b13b374ac72d1, type: 3}
   jumpSoundVolume: 0.25
+  jumpBonus: 10
